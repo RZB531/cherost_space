@@ -320,6 +320,7 @@ input, button, .field {
 // Усі правила
 const rules = [
   { test: p => p.length >= 5, message: "Пароль має містити щонайменше 5 символів" },
+  { test: p => !/0/i.test(p), message: "Пароль не повинен містити цифру '0', вибачте" },
   { test: p => !/password/i.test(p), message: "Пароль не повинен містити слово 'password'" },
   { test: p => !/fantom/i.test(p), message: "Пароль не повинен містити слово 'fantom'" },
   { test: p => !/ftm/i.test(p), message: "Пароль не повинен містити слово 'ftm'" },
