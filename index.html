@@ -374,23 +374,29 @@ function updateValidation() {
   }
 }
 function checkEasterEgg(p) {
-  const message = "❗️Слово для перезапуску бота: skydive";
-  let egg = document.getElementById("easter-egg");
+  const eggs = [
+    { keyword: "027", message: "❗️Слово для перезапуску бота: skydive" },
+    { keyword: "smooth", message: "Хах, ого! Повернись до боту і напиши mission completed" },
+  ];
 
-  if (p.toLowerCase().includes("027")) {
-    if (!egg) {
-      egg = document.createElement("div");
-      egg.id = "easter-egg";
-      egg.style.color = "#00ffcc";
-      egg.style.marginTop = "5px";
-      egg.style.fontWeight = "bold";
-      errorDiv.parentNode.insertBefore(egg, errorDiv.nextSibling);
+  const match = eggs.find(egg => p.toLowerCase().includes(egg.keyword));
+  let eggDiv = document.getElementById("easter-egg");
+
+  if (match) {
+    if (!eggDiv) {
+      eggDiv = document.createElement("div");
+      eggDiv.id = "easter-egg";
+      eggDiv.style.color = "#00ffcc";
+      eggDiv.style.marginTop = "5px";
+      eggDiv.style.fontWeight = "bold";
+      errorDiv.parentNode.insertBefore(eggDiv, errorDiv.nextSibling);
     }
-    egg.innerText = message;
-  } else {
-    if (egg) egg.remove();
+    eggDiv.innerText = match.message;
+  } else if (eggDiv) {
+    eggDiv.remove();
   }
 }
+
 passwordInput.addEventListener('input', updateValidation);
 
 document.getElementById('password-form').addEventListener('submit', function(e) {
